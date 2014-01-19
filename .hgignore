@@ -1,0 +1,13 @@
+^nbproject/*
+^common/libocltoys_common.a$
+^mandelgpu/mandelgpu$
+^juliagpu/juliagpu$
+^smallptgpu/smallptgpu$
+^jugCLer/jugCLer$
+^.dep.inc
+syntax: glob
+*~
+*CMakeFiles
+*CMakeCache.txt
+*Makefile
+*cmake_install.cmake
