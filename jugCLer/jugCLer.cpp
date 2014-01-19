@@ -57,7 +57,7 @@ struct Bitmap {
 
 class JugCLer : public OCLToy {
 public:
-	JugCLer() : OCLToy("JugCLer v" OCLTOYS_VERSION_MAJOR "." OCLTOYS_VERSION_MINOR " (OCLToys: http://code.google.com/p/ocltoys)") {
+	JugCLer() : OCLToy("JugCLer v" PACKAGE_VERSION " (" PACKAGE_NAME ": " PACKAGE_URL ")") {
 		millisTimerFunc = 1000.0 / 60.0; // 60Hz
 
 		bitmap = NULL;
@@ -388,7 +388,7 @@ private:
 		OCLTOY_LOG("Compile OpenCL kernel: " << kernelFileName);
 
 		// Read the kernel
-		const std::string kernelSource = ReadSources(kernelFileName);
+		const std::string kernelSource = ReadSources(kernelFileName, "jugCLer");
 
 		// Create the kernel program
 		cl::Device &oclDevice = selectedDevices[0];

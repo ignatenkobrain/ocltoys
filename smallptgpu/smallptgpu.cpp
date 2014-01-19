@@ -44,7 +44,7 @@
 
 class SmallPTGPU : public OCLToy {
 public:
-	SmallPTGPU() : OCLToy("SmallPTGPU v" OCLTOYS_VERSION_MAJOR "." OCLTOYS_VERSION_MINOR " (OCLToys: http://code.google.com/p/ocltoys)") {
+	SmallPTGPU() : OCLToy("SmallPTGPU v" PACKAGE_VERSION " (" PACKAGE_NAME ": " PACKAGE_URL ")") {
 		millisTimerFunc = 100;
 		kernelToneMapping = NULL;
 		mergedPixels = NULL;
@@ -455,7 +455,7 @@ private:
 		OCLTOY_LOG("Compile OpenCL kernel: " << kernelFileName);
 
 		// Read the kernel
-		const std::string kernelSource = ReadSources(kernelFileName);
+		const std::string kernelSource = ReadSources(kernelFileName, "smallptgpu");
 
 		// Kernel options
 		std::stringstream ss;
@@ -545,9 +545,18 @@ private:
 	void ReadScene(const std::string &fileName) {
 		OCLTOY_LOG("Reading scene: " << fileName);
 
-		std::ifstream f(fileName.c_str(), std::ifstream::in | std::ifstream::binary);
-		if (!f.good())
-			throw std::runtime_error("Failed to open file: " + fileName);
+		std::string fileFullPath;
+		fileFullPath = std::string(PACKAGE_DATADIR) + \
+		               std::string("smallptgpu/") + \
+		               std::string(fileName);
+		std::ifstream f(fileFullPath.c_str(), std::ifstream::in | std::ifstream::binary);
+		if (!f.good()) {
+			fileFullPath = std::string(fileName);
+			f.clear();
+			std::ifstream f(fileFullPath.c_str(), std::ifstream::in | std::ifstream::binary);
+			if (!f.good())
+				throw std::runtime_error("Failed to open file: " + fileName);
+		}
 
 		// Read the camera position
 		std::string cameraLine;

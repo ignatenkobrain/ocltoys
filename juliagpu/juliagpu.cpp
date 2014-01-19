@@ -40,7 +40,7 @@
 
 class JuliaGPU : public OCLToy {
 public:
-	JuliaGPU() : OCLToy("JuliaGPU v" OCLTOYS_VERSION_MAJOR "." OCLTOYS_VERSION_MINOR " (OCLToys: http://code.google.com/p/ocltoys)"),
+	JuliaGPU() : OCLToy("JuliaGPU v" PACKAGE_VERSION " (" PACKAGE_NAME ": " PACKAGE_URL ")"),
 			mouseButton0(false), mouseButton2(false), shiftMouseButton0(false), muMouseButton0(false),
 			mouseGrabLastX(0), mouseGrabLastY(0),
 			pixels(NULL), pixelsBuff(NULL), configBuff(NULL), workGroupSize(64) {
@@ -608,7 +608,7 @@ private:
 		OCLTOY_LOG("Compile OpenCL kernel: " << kernelFileName);
 
 		// Read the kernel
-		const std::string kernelSource = ReadSources(kernelFileName);
+		const std::string kernelSource = ReadSources(kernelFileName, "juliagpu");
 
 		// Create the kernel program
 		cl::Device &oclDevice = selectedDevices[0];

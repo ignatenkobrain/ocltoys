@@ -47,7 +47,7 @@ extern std::string OCLDeviceTypeString(cl_device_type type);
 extern void PrintString(void *font, const char *string);
 extern void PrintHelpString(const unsigned int x, const unsigned int y,
 		const char *key, const char *msg);
-extern std::string ReadSources(const std::string &fileName);
+extern std::string ReadSources(const std::string &fileName, const std::string &toolName);
 
 inline double WallClockTime() {
 #if defined(__linux__) || defined(__APPLE__) || defined(__CYGWIN__) || defined(__OpenBSD__) || defined(__FreeBSD__)

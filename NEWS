@@ -1,0 +1,5 @@
+ocltoys 1.1 (UNRELEASED)
+==================================
+
+* Migrated to GNU autotools
+* Added install hooks

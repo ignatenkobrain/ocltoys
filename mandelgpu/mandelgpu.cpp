@@ -31,7 +31,7 @@
 
 class MandelGPU : public OCLToy {
 public:
-	MandelGPU() : OCLToy("MandelGPU v" OCLTOYS_VERSION_MAJOR "." OCLTOYS_VERSION_MINOR " (OCLToys: http://code.google.com/p/ocltoys)"),
+	MandelGPU() : OCLToy("MandelGPU v" PACKAGE_VERSION " (" PACKAGE_NAME ": " PACKAGE_URL ")"),
 			scale(3.5f), offsetX(-.5f), offsetY(0.f), maxIterations(256),
 			mouseButton0(false), mouseButton2(false), mouseGrabLastX(0), mouseGrabLastY(0),
 			pixels(NULL), pixelsBuff(NULL), workGroupSize(64) {
@@ -284,7 +284,7 @@ private:
 		OCLTOY_LOG("Compile OpenCL kernel: " << kernelFileName);
 
 		// Read the kernel
-		const std::string kernelSource = ReadSources(kernelFileName);
+		const std::string kernelSource = ReadSources(kernelFileName, "mandelgpu");
 
 		// Create the kernel program
 		cl::Device &oclDevice = selectedDevices[0];

@@ -23,7 +23,7 @@
 #define	OCLTOY_H
 
 #include "utils.h"
-#include "version.h"
+#include "config.h"
 
 #include <sstream>
 #include <vector>
