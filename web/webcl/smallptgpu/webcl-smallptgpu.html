@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame
+		Remove this if you use the .htaccess -->
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<title>WebCL SmallPTGPU</title>
+		<meta name="description" content="" />
+		<meta name="author" content="David Bucciarelli" />
+		<meta name="author" content="Matias Piispanen" />
+		<meta name="viewport" content="width=device-width; initial-scale=1.0" />
+		<!-- Replace favicon.ico & apple-touch-icon.png in the root of your domain and delete these references -->
+		<link rel="shortcut icon" href="/favicon.ico" />
+		<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+		
+		<script type="text/javascript" src="gl-matrix.js"></script>
+		<script type="text/javascript" src="webcl-smallptgpu.js"></script>
+		<script type="text/javascript" src="scene.js"></script>
+		<script type="text/javascript" src="geom.js"></script>
+		<script type="text/javascript" src="camera.js"></script>
+
+		<script id="vshader" type="x-shader/x-vertex">
+			attribute vec3 aVertexPosition;
+			attribute vec4 aVertexColor;
+
+			uniform mat4 uMVMatrix;
+			uniform mat4 uPMatrix;
+
+			varying vec4 vColor;
+
+			void main(void) {
+				gl_Position = uPMatrix * uMVMatrix * vec4(aVertexPosition, 1.0);
+				vColor = aVertexColor;
+			}
+		</script>
+		<script id="fshader" type="x-shader/x-fragment">
+			precision mediump float;
+
+			varying vec4 vColor;
+
+			void main(void) {
+				gl_FragColor = vColor;
+			}
+		</script> 
+
+	</head>
+	<body onload="webCLSmallPT()" onkeydown="keyFunc(event)">
+		<div>
+			<header>
+				<h1>WebCL SmallPTGPU</h1>
+			</header>
+				This demo requires <a href="http://www.khronos.org/opencl">OpenCL</a> and
+				<a href="http://www.khronos.org/webcl">WebCL</a>. WebCL can easily be installed with one click in
+				Firefox 20 (more details available at <a href="http://webcl.nokiaresearch.com">webcl.nokiaresearch.com</a>).
+				<p>
+				<canvas id="canvas" width="640" height="480" style="position:relative; left=0px; width=50%"></canvas>
+				<br><button type="button" id="stop" onclick="startStopChanged()">Stop</button>
+				<p>Resolution: 
+				<select id="resolution" onchange="resolutionChanged(this.selectedIndex)">
+				<option>320x240</option>
+				<option selected="selected">640x480</option>
+				<option>800x600</option>
+				<option>1024x768</option>
+				</select>
+				<p>Scene: 
+				<select id="scene" onchange="sceneChanged(this.options[this.selectedIndex].value)">
+				<option>caustic.scn</option>
+				<option>caustic3.scn</option>
+				<option selected="selected">cornell.scn</option>
+				<option>cornell_fog.scn</option>
+				<option>cornell_sss.scn</option>
+				<option>simple.scn</option>
+				</select>
+				<p>Device: 
+				<select id="devices" onchange="deviceChanged(this.selectedIndex)"></select>
+				<p>Console:</p>
+				<div id="console" style="border:1px solid blue;"></div>
+				<h2>Help</h2>
+				Arrow Keys - rotate camera left/right/up/down<br>
+				a and d - move camera left and right<br>
+				w and s - move camera forward and backward<br>
+				r and f - move camera up and down<br>
+				PageUp and PageDown - move camera target up and down<br>
+				n and m - to select next/previous object<br>
+				2, 3, 4, 5, 6, 8, 9 - to move selected object<br>
+			<footer>
+			</footer>
+		</div>
+	</body>
+</html>
