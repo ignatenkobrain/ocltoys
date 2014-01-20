@@ -19,6 +19,7 @@ AX_CHECK_GLU
 AX_CHECK_GLUT
 AC_CHECK_LIB([OpenCL], [clGetPlatformIDs])
 CFLAGS="-Wall"
+CPPFLAGS="-Wall -msse -msse2"
 package_datadir="${prefix}/share/ocltoys/"
 AC_DEFINE_UNQUOTED([PACKAGE_DATADIR], ["$package_datadir"], [Configuration machine file.])
 AC_SUBST(package_datadir)
