@@ -33,3 +33,9 @@ TARGET_LINK_LIBRARIES(jugCLer ocltoys_common ${GLUT_LIBRARY} ${OPENGL_LIBRARY} $
 
 # This instructs FREEGLUT to emit a pragma for the static version
 SET_TARGET_PROPERTIES(jugCLer PROPERTIES COMPILE_DEFINITIONS FREEGLUT_STATIC)
+
+install(TARGETS jugCLer
+				RUNTIME DESTINATION bin)
+
+install(FILES trace.cl
+				DESTINATION ${PACKAGE_DATADIR}/jugCLer)

@@ -32,7 +32,13 @@ IF (WIN32)
   # not using msvc (express is free) - feel free to implement
 
 ELSE (WIN32)
-	set(CMAKE_INSTALL_PREFIX .)
+	if(NOT CMAKE_INSTALL_PREFIX)
+		set(CMAKE_INSTALL_PREFIX .)
+		set(PACKAGE_DATADIR ./)
+	else(NOT CMAKE_INSTALL_PREFIX)
+		set(PACKAGE_DATADIR ${CMAKE_INSTALL_PREFIX}/share/ocltoys/)
+	endif(NOT CMAKE_INSTALL_PREFIX)
+
 
 	# Windows 64bit
 	set(OCLTOYS_BIN_WIN64_DIR "ocltoys-win64-v1.0")

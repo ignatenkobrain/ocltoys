@@ -33,3 +33,9 @@ TARGET_LINK_LIBRARIES(juliagpu ocltoys_common ${GLUT_LIBRARY} ${OPENGL_LIBRARY} 
 
 # This instructs FREEGLUT to emit a pragma for the static version
 SET_TARGET_PROPERTIES(juliagpu PROPERTIES COMPILE_DEFINITIONS FREEGLUT_STATIC)
+
+install(TARGETS juliagpu
+				RUNTIME DESTINATION bin)
+
+install(FILES preprocessed_rendering_kernel.cl
+				DESTINATION ${PACKAGE_DATADIR}/juliagpu)

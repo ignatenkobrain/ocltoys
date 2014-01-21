@@ -73,6 +73,8 @@ endif(NOT CMAKE_BUILD_TYPE)
 SET(CMAKE_BUILD_TYPE ${CMAKE_BUILD_TYPE} CACHE STRING "assure config" FORCE) # makes sure type is shown in cmake gui
 
 message(STATUS "Building mode: " ${CMAKE_BUILD_TYPE})
+message(STATUS "Install prefix: " ${CMAKE_INSTALL_PREFIX})
+message(STATUS "Install datadir: " ${PACKAGE_DATADIR})
 
 # Find dependencies
 include(Dependencies)
