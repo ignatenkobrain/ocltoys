@@ -19,4 +19,4 @@ Compiling
 
 To compile OCLToys, you have to use cmake (http://www.cmake.org). OCLToys haave
 the following dependencies: OpenCL (http://www.khronos.org/opencl), OpenGL (http://www.khronos.org/opengl),
-Boost Library (http://www.boost.org) and GLUT Library (http://freeglut.sourceforge.net).
+Boost Library (http://www.boost.org), OpenCL C++ headers (https://github.com/KhronosGroup/OpenCL-CLHPP) and GLUT Library (http://freeglut.sourceforge.net).
